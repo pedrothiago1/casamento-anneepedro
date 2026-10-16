@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casamento Anne e Pedro</title>
+  
+  <!-- Fontes: Cinzel (Épica/Senhor dos Anéis) e Montserrat (Leitura limpa) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Biblioteca de Ícones Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    :root {
+      /* Paleta Senhor dos Anéis: Floresta Élfica, Pergaminho e Dourado */
+      --primary: #1e3122; /* Verde Floresta Escuro */
+      --primary-light: #2c4a33; /* Verde Folha */
+      --secondary: #c9a25e; /* Dourado Envelhecido / O Anel */
+      --bg-color: #f6f4f0; /* Pergaminho claro */
+      --text-color: #3b3a37; /* Cinza Chumbo/Marrom Escuro */
+      --card-bg: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.7; overflow-x: hidden; }
+    
+    h1, h2, h3, .serif { font-family: 'Cinzel', serif; color: var(--primary); font-weight: 600; }
+    
+    /* Animações de Rolagem (Fade-Up) */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Divisores Élficos (Senhor dos Anéis) */
+    .lotr-divider {
+      display: flex; align-items: center; justify-content: center; gap: 15px; color: var(--secondary); margin: 30px 0;
+    }
+    .lotr-divider::before, .lotr-divider::after {
+      content: ""; width: 80px; height: 1px; background: var(--secondary); opacity: 0.5;
+    }
+
+    /* Header & Nav */
+    header { 
+      text-align: center; padding: 20px; position: fixed; width: 100%; top: 0; z-index: 1000; 
+      display: flex; flex-direction: column; align-items: center;
+      background: transparent; transition: all 0.4s ease;
+    }
+    header.scrolled { background: rgba(246, 244, 240, 0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 15px 20px; border-bottom: 1px solid rgba(201, 162, 94, 0.3); }
+    header.scrolled h1, header.scrolled nav a { color: var(--primary); font-weight: 600; }
+    
+    header h1 { font-size: 1.8rem; letter-spacing: 3px; color: var(--primary); text-shadow: 1px 1px 5px rgba(255,255,255,0.8); transition: 0.4s; }
+    nav { margin-top: 10px; display: flex; gap: 20px; align-items: center;}
+    nav a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; text-shadow: 1px 1px 5px rgba(255,255,255,0.8); }
+    nav a:hover { color: var(--secondary); }
+
+    /* Hero Section Atualizada para a Aquarela */
+    .hero { 
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+      background-image: url('foto-fundo.png'); 
+      background-size: cover;
+      background-position: center top; 
+      background-attachment: fixed; 
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to bottom, rgba(246, 244, 240, 0.6) 0%, rgba(246, 244, 240, 0.1) 50%, var(--bg-color) 100%);
+      z-index: 1;
+    }
+    
+    .hero-content { position: relative; z-index: 2; margin-top: -10vh; } 
+    
+    .hero h2 { 
+      color: var(--primary); 
+      font-size: 4rem; 
+      margin-bottom: 5px; 
+      text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9), -1px -1px 5px rgba(255,255,255,0.8); 
+      letter-spacing: 4px; 
+    }
+    .hero p { 
+      font-size: 1.2rem; 
+      font-family: 'Cinzel', serif; 
+      letter-spacing: 2px; 
+      color: var(--primary); 
+      font-weight: 700;
+      text-shadow: 1px 1px 8px rgba(255, 255, 255, 0.9);
+      margin-bottom: 40px;
+    }
+    
+    /* Contador Épico */
+    .countdown { display: flex; justify-content: center; gap: 25px; }
+    .time-box { text-align: center; min-width: 70px; }
+    
+    .time-box span { 
+      display: block; 
+      font-size: 2.5rem; 
+      font-family: 'Cinzel', serif; 
+      color: var(--primary); 
+      text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9); 
+      font-weight: 700;
+    }
+    .time-box small { 
+      font-size: 0.7rem; 
+      text-transform: uppercase; 
+      letter-spacing: 2px; 
+      color: var(--primary); 
+      font-weight: 700;
+      background: rgba(246, 244, 240, 0.8); 
+      padding: 3px 8px;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    /* Seções Gerais */
+    section { padding: 90px 20px; max-width: 1100px; margin: 0 auto; text-align: center; }
+    section h2 { font-size: 2.8rem; margin-bottom: 25px; color: var(--primary); }
+    section p.subtitle { color: var(--text-color); margin-bottom: 50px; max-width: 700px; margin-left: auto; margin-right: auto; font-size: 1.05rem; }
+
+    /* Bloco Bem-Vindos */
+    .welcome-box {
+      background: var(--card-bg);
+      padding: 60px 40px;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      border: 1px solid rgba(201, 162, 94, 0.3);
+      margin: -60px auto 40px auto;
+      position: relative;
+      z-index: 10;
+      max-width: 800px;
+    }
+    .welcome-box p { margin-bottom: 20px; font-size: 1.1rem; line-height: 1.8; }
+
+    /* Logística & Dress Code */
+    .logistics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; align-items: stretch; margin-bottom: 40px; }
+    
+    .location-card { background: var(--card-bg); padding: 40px; border-radius: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid rgba(201, 162, 94, 0.2); display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
+    .location-card h3 { font-size: 1.8rem; margin-bottom: 15px; color: var(--primary-light); }
+    .btn-maps { display: inline-block; background: transparent; color: var(--primary); border: 1px solid var(--primary); padding: 10px 20px; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; border-radius: 2px; transition: 0.3s; margin-top: 20px; font-weight: 600; }
+    .btn-maps:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+    .dress-code-box { background: var(--primary-light); color: white; padding: 50px 30px; border-radius: 4px; text-align: center; border: 1px solid rgba(201, 162, 94, 0.4); }
+    .dress-code-box h3 { color: var(--secondary); margin-bottom: 20px; font-size: 2.2rem; }
+    .dress-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .dress-col h4 { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--secondary); margin-bottom: 15px; }
+    .dress-col p { font-size: 0.95rem; opacity: 0.9; }
+
+    /* RSVP Section */
+    .rsvp-box { background: var(--card-bg); padding: 50px; border-radius: 4px; max-width: 650px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.04); border: 1px solid rgba(201, 162, 94, 0.3); }
+    .rsvp-box input[type="text"], .rsvp-box textarea { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 2px; font-size: 1rem; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; background: var(--bg-color); }
+    .search-result-item { padding: 15px; border: 1px solid rgba(201, 162, 94, 0.4); border-radius: 2px; margin-top: 10px; cursor: pointer; transition: 0.3s; text-align: left; background: var(--card-bg); }
+    .search-result-item:hover { border-color: var(--primary); background: #fdfdfd; }
+    .checkbox-group { text-align: left; margin: 20px 0; background: var(--bg-color); padding: 25px; border-radius: 2px; border: 1px solid #eaeaea; }
+    .checkbox-group label { display: flex; align-items: center; margin-bottom: 15px; cursor: pointer; font-size: 1rem; color: var(--text-color); }
+    .checkbox-group input[type="checkbox"] { margin-right: 15px; transform: scale(1.2); accent-color: var(--primary); }
+
+    .btn { background: var(--primary); color: var(--secondary); border: 1px solid var(--secondary); padding: 14px 28px; font-size: 0.9rem; border-radius: 2px; cursor: pointer; transition: 0.3s; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-family: 'Montserrat', sans-serif;}
+    .btn:hover { background: var(--secondary); color: white; border-color: var(--secondary); }
+
+    /* Estilo do botão voltar */
+    .btn-back {
+      background: transparent;
+      color: var(--primary);
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      transition: 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .btn-back:hover {
+      color: var(--secondary);
+    }
+
+    /* Citações Épicas */
+    .epic-quote-section {
+      text-align: center; padding: 60px 20px; background: var(--primary); color: var(--secondary);
+    }
+    .epic-quote { font-family: 'Cinzel', serif; font-style: italic; font-size: 1.4rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+    .epic-author { font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 15px; opacity: 0.8; font-family: 'Montserrat', sans-serif; }
+
+    /* =========================================
+       AJUSTES PARA DISPOSITIVOS MÓVEIS (TELAS PEQUENAS)
+       ========================================= */
+    @media (max-width: 768px) {
+      /* Menu e Topo */
+      header h1 { font-size: 1.4rem; letter-spacing: 2px; }
+      nav { gap: 12px; }
+      nav a { font-size: 0.75rem; }
+
+      /* Imagem principal e Textos */
+      .hero h2 { font-size: 2.5rem; letter-spacing: 2px; }
+      .hero p { font-size: 1rem; margin-bottom: 30px; }
+
+      /* Ajuste do Relógio/Contador */
+      .countdown { gap: 10px; }
+      .time-box { min-width: 60px; }
+      .time-box span { font-size: 1.8rem; }
+      .time-box small { font-size: 0.6rem; padding: 2px 4px; }
+
+      /* Espaçamento geral das seções */
+      section { padding: 60px 15px; }
+      section h2 { font-size: 2.2rem; }
+      section p.subtitle { font-size: 0.95rem; margin-bottom: 35px; }
+
+      /* Caixas (Bem-vindos, Locais, RSVP) */
+      .welcome-box { padding: 30px 20px; margin-top: -40px; margin-bottom: 20px; }
+      .welcome-box p { font-size: 1rem; }
+      
+      .logistics-grid { grid-template-columns: 1fr; gap: 20px; }
+      .location-card { padding: 30px 20px; }
+      .location-card h3 { font-size: 1.5rem; }
+
+      .dress-grid { grid-template-columns: 1fr; gap: 25px; }
+      .dress-code-box { padding: 35px 20px; }
+      .dress-code-box h3 { font-size: 1.8rem; }
+      .dress-col h4 { font-size: 1.3rem; }
+
+      .rsvp-box { padding: 30px 20px; }
+      .checkbox-group { padding: 15px; }
+      
+      /* Citação Final */
+      .epic-quote { font-size: 1.1rem; }
+      
+      /* Botão Havan */
+      #presentes .btn { font-size: 0.9rem; padding: 15px 20px; width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu -->
+  <header id="header">
+    <h1>Anne & Pedro</h1>
+    <nav>
+      <a href="#local">Local</a>
+      <a href="#rsvp">Presença</a>
+      <a href="#presentes">Sugestões</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-content fade-up">
+      <h2>14 de Novembro</h2>
+      <p>"A jornada não termina aqui."</p>
+      
+      <div class="countdown">
+        <div class="time-box"><span id="days">00</span><small>Dias</small></div>
+        <div class="time-box"><span id="hours">00</span><small>Horas</small></div>
+        <div class="time-box"><span id="mins">00</span><small>Min</small></div>
+        <div class="time-box"><span id="secs">00</span><small>Seg</small></div>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding-top: 0; padding-bottom: 40px;">
+    <div class="welcome-box fade-up">
+      <h2 style="font-size: 2.2rem; text-align: center;">Bem-vindos!</h2>
+      <div class="lotr-divider"><i data-lucide="leaf"></i></div>
+      <p>Estamos muito felizes em compartilhar esse momento tão especial com vocês!</p>
+      <p>Criamos este cantinho para reunir todas as informações do nosso casamento e deixar tudo mais fácil para quem vai celebrar esse dia ao nosso lado.</p>
+      <p>Por aqui vocês poderão conferir os detalhes da cerimônia e da festa, confirmar presença, conhecer nossa lista de presentes e encontrar outras informações importantes para o grande dia.</p>
+      <p>Estamos preparando tudo com muito carinho e esperamos vocês para viver esse momento com a gente.</p>
+    </div>
+  </section>
+
+  <section id="local">
+    <h2 class="fade-up">A Celebração</h2>
+    <p class="subtitle fade-up">Os locais escolhidos para abençoar e celebrar nossa união.</p>
+    
+    <div class="logistics-grid">
+      <!-- Cerimônia -->
+      <div class="location-card fade-up">
+        <div style="display:flex; justify-content:center;"><i data-lucide="church" style="color: var(--secondary); margin-bottom: 15px; width: 35px; height: 35px;"></i></div>
+        <h3>O Momento do 'Sim'</h3>
+        <p style="margin-bottom: 15px; font-size: 0.95rem; opacity: 0.9;">O momento mais importante e emocionante do nosso dia. Mal podemos esperar para receber as bênçãos cercados de quem amamos.</p>
+        <p style="font-weight: 500; font-size: 1.1rem; color: var(--primary);">Capela do Santíssimo Nossa Senhora de Guadalupe</p>
+        <p style="font-size: 0.9rem; margin-top: 10px;">Itaipu A, Foz do Iguaçu - PR<br>CEP: 85860-290</p>
+        <div>
+          <a href="https://maps.google.com/?q=Capela+do+Santíssimo+Nossa+Senhora+de+Guadalupe,+Itaipu+A,+Foz+do+Iguaçu" target="_blank" rel="noopener noreferrer" class="btn-maps">Abrir no Maps</a>
+        </div>
+      </div>
+
+      <!-- Recepção -->
+      <div class="location-card fade-up">
+        <div style="display:flex; justify-content:center; gap: 10px; color: var(--secondary); margin-bottom: 15px;">
+          <i data-lucide="pizza" style="width: 35px; height: 35px;"></i> <i data-lucide="wine" style="width: 35px; height: 35px;"></i>
+        </div>
+        <h3>A Recepção</h3>
+        <p style="margin-bottom: 15px; font-size: 0.95rem; opacity: 0.9;">Pizza, Chopp de Vinho e Muito Amor! Depois do tão esperado 'sim', esperamos vocês para brindarmos a essa nova fase com uma mesa farta.</p>
+        <p style="font-weight: 500; font-size: 1.1rem; color: var(--primary);">Cantina La Gregoria</p>
+        <p style="font-size: 0.9rem; margin-top: 10px;">Rua Almirante Barroso, N. 1466 - Sala 04.<br>Foz do Iguaçu - PR</p>
+        <div>
+          <a href="https://maps.app.goo.gl/nhxj391koJ4fPQrP8" target="_blank" rel="noopener noreferrer" class="btn-maps">Abrir no Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dress Code -->
+    <div class="dress-code-box fade-up">
+      <h3>Trajes</h3>
+      <div class="lotr-divider"><i data-lucide="sparkles"></i></div>
+      <div class="dress-grid">
+        <div class="dress-col">
+          <h4>Para Eles</h4>
+          <p>Para esse momento especial, pedimos traje <strong>social/elegante</strong>, sendo reservado aos padrinhos tons de grafite e o preto <em>all Black</em> exclusivamente para o noivo.</p>
+        </div>
+        <div class="dress-col">
+          <h4>Para Elas</h4>
+          <p>Recomendamos vestidos midi ou longos. Pedimos a gentileza de <strong>evitar tons de branco, off-white e cores muito claras</strong> (reservados à noiva) e <strong>tons de verde</strong> (escolhidos para as madrinhas).</p>
+        </div>
+      </div>
+      <p style="margin-top: 30px; font-style: italic; font-family: 'Cinzel', serif; color: var(--secondary);">Agradecemos o carinho e a atenção com o nosso dress code.</p>
+    </div>
+  </section>
+
+  <section id="rsvp" style="background-color: #f1ede5;">
+    <h2 class="fade-up">Presença</h2>
+    <p class="subtitle fade-up">Por favor, confirme sua presença para que possamos organizar tudo com muito carinho.</p>
+    
+    <div class="rsvp-box fade-up" id="rsvp-search-container">
+      <p style="margin-bottom: 15px; font-weight: 500;">Digite seu nome ou sobrenome para buscar seu convite:</p>
+      <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+        <input type="text" id="guest-search-input" placeholder="Ex: Alencar ou Pedro">
+        <button onclick="searchGuest()" class="btn">Buscar</button>
+      </div>
+      <div id="guest-search-results"></div>
+    </div>
+
+    <!-- TELA DE SELEÇÃO DOS CONVIDADOS -->
+    <div class="rsvp-box fade-up" id="rsvp-selection-container" style="display: none;">
+      
+      <!-- BOTÃO DE VOLTAR -->
+      <div style="text-align: left;">
+        <button type="button" class="btn-back" onclick="goBackToSearch()">
+          <i data-lucide="arrow-left"></i> Voltar
+        </button>
+      </div>
+      
+      <h3 id="family-name-title" style="margin-bottom: 15px; font-size: 1.5rem; text-align: center;"></h3>
+      <p style="text-align: center;">Selecione quem irá comparecer:</p>
+      
+      <form id="rsvp-form" onsubmit="submitRSVP(event)">
+        <div class="checkbox-group" id="guest-checkboxes">
+          <!-- Checkboxes via JS -->
+        </div>
+        
+        <label style="font-weight: 500; font-size: 0.9rem; color: var(--primary);">Possui alguma restrição alimentar? (Ex: Lactose, Glúten, Vegano)</label>
+        <textarea id="rsvp-restrictions" placeholder="Descreva aqui, se houver..." rows="2" style="border-color: var(--secondary); margin-top: 8px;"></textarea>
+        
+        <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">Confirmar Selecionados</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- SEÇÃO DE PRESENTES ATUALIZADA (LINK DA HAVAN) -->
+  <section id="presentes">
+    <h2 class="fade-up">Lista de Presentes</h2>
+    <div class="lotr-divider fade-up"><i data-lucide="gift"></i></div>
+    <p class="subtitle fade-up" style="margin-bottom: 20px;">Como já moramos juntos, já temos o básico montado! Se desejarem nos presentear, criamos uma lista com algumas ideias e itens para nossa casa diretamente na Havan.</p>
+    <p class="subtitle fade-up" style="font-size: 0.9rem; font-style: italic; margin-bottom: 40px;">*Fique à vontade para acessar ao link abaixo e escolher o item da sua preferência.</p>
+    
+    <div class="fade-up" style="margin-top: 20px;">
+      <a href="https://lista.havan.com.br/Convidado/ItensListaPresente/967376" target="_blank" rel="noopener noreferrer" class="btn" style="display: inline-flex; align-items: center; gap: 10px; font-size: 1.05rem; padding: 18px 36px; text-decoration: none;">
+        <i data-lucide="external-link" style="width: 22px; height: 22px;"></i> Acessar à Lista na Havan
+      </a>
+    </div>
+  </section>
+
+  <div class="epic-quote-section fade-up">
+    <div class="epic-quote">
+      "Eu prefiro compartilhar uma vida com você a encarar todas as eras deste mundo sozinho(a)."
+    </div>
+    <div class="epic-author">J.R.R Tolkien</div>
+  </div>
+
+  <script>
+    // --- LÓGICA DE ANIMAÇÃO NO SCROLL (Fade-Up) ---
+    document.addEventListener("DOMContentLoaded", function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      const elementsToAnimate = document.querySelectorAll('.fade-up');
+      elementsToAnimate.forEach(el => observer.observe(el));
+      
+      lucide.createIcons();
+    });
+
+    // --- EFEITO MENU SUPERIOR ---
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // --- CONTADOR ---
+    const targetDate = new Date("Nov 14, 2026 16:00:00").getTime();
+    setInterval(function() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      if (distance > 0) {
+        document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+        document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+        document.getElementById("mins").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+        document.getElementById("secs").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+      }
+    }, 1000);
+
+    // --- LISTA DE CONVIDADOS REAL ---
+    const mockGuestDatabase = [
+      { id: 1, name: "Família do Noivo", members: ["Edivaldo Pereira Guimarães", "Leonir Xavier de Souza Guimarães", "João Gabriel de Souza Guimarães", "Namorada do João", "Namorado do João (Sobrinho)"] },
+      { id: 2, name: "Família da Noiva", members: ["Emerson Alencar", "Lidiane Alencar", "Thiago Alencar", "Arthur Alencar", "Soni Alencar", "Sandra Alencar", "Djalma", "Claudiane", "Maria Lúcia", "José", "Mickelly", "Jeferson"] },
+      { id: 3, name: "Família Pereira", members: ["Flávio Pereira", "Maria da Conceição Pereira", "Maria Eduarda Pereira"] },
+      { id: 4, name: "Família Nicolau", members: ["Otávio Nicolau", "Miriane Nicolau", "Ana Nicolau"] },
+      { id: 5, name: "Família Beltrame", members: ["Leila Beltrame", "Marcos Beltrame", "Ana Beatriz Beltrame"] },
+      { id: 6, name: "Família Almeida", members: ["Jonathan Almeida", "Natana Almeida"] },
+      { id: 7, name: "Família Guimarães", members: ["José Guimarães", "Adriana Guimarães"] },
+      { id: 8, name: "Família Americana", members: ["Kauane Siqueira", "Bruno Matheus"] },
+      { id: 9, name: "Família Souza", members: ["Andressa", "Francisco", "Maria Inês", "Namorado da Andressa"] },
+      { id: 10, name: "Amigos - Tatiane e Paulo", members: ["Tatiane Gretter", "Paulo da Conceição"] },
+      { id: 11, name: "Amigos - Kelly e Jair", members: ["Kelly Arnold", "Jair Neid", "Isabela Arnold"] },
+      { id: 12, name: "Amigos - Alessandra e William", members: ["Alessandra Ditz", "William Hans"] },
+      { id: 13, name: "Amigos - Jhennifer e Gilberto", members: ["Jhennifer Nogueira", "Gilberto Bruning"] },
+      { id: 14, name: "Amigos - Janine e Sormani", members: ["Janine", "Sormani"] },
+      { id: 15, name: "Amigos - Andressa, Andrey e Alan", members: ["Andressa", "Andrey", "Alan"] }
+    ];
+
+    function searchGuest() {
+      const input = document.getElementById('guest-search-input').value.toLowerCase().trim();
+      const resultsDiv = document.getElementById('guest-search-results');
+      
+      if(input.length < 3) {
+        resultsDiv.innerHTML = "<p style='color:#a44; margin-top:10px;'>Digite pelo menos 3 letras.</p>";
+        return;
+      }
+      
+      const found = mockGuestDatabase.filter(g => 
+        g.name.toLowerCase().includes(input) || 
+        g.members.some(m => m.toLowerCase().includes(input))
+      );
+      
+      if(found.length === 0) {
+        resultsDiv.innerHTML = "<p style='margin-top:10px;'>Convite não encontrado. Tente procurar pelo apelido ou fale com os noivos.</p>";
+      } else {
+        resultsDiv.innerHTML = found.map(g => `
+          <div class="search-result-item" onclick="selectFamily(${g.id})">
+            <strong style="color: var(--primary);">${g.name}</strong><br>
+            <small style="color: #666;">Clique para selecionar quem irá comparecer.</small>
+          </div>
+        `).join('');
+      }
+    }
+
+    function selectFamily(id) {
+      const family = mockGuestDatabase.find(g => g.id === id);
+      document.getElementById('rsvp-search-container').style.display = 'none';
+      document.getElementById('rsvp-selection-container').style.display = 'block';
+      document.getElementById('family-name-title').innerText = "Convite: " + family.name;
+      
+      const checkDiv = document.getElementById('guest-checkboxes');
+      checkDiv.innerHTML = family.members.map((m, index) => `
+        <label>
+          <input type="checkbox" name="guests" value="${m}" checked> ${m}
+        </label>
+      `).join('');
+      
+      lucide.createIcons();
+    }
+
+    // --- FUNÇÃO DO BOTÃO VOLTAR ---
+    function goBackToSearch() {
+      document.getElementById('rsvp-selection-container').style.display = 'none';
+      document.getElementById('rsvp-search-container').style.display = 'block';
+      document.getElementById('rsvp-restrictions').value = '';
+    }
+
+    // --- FUNÇÃO DE CONFIRMAÇÃO VIA WHATSAPP ---
+    function submitRSVP(event) {
+      event.preventDefault();
+      const selected = Array.from(document.querySelectorAll('input[name="guests"]:checked')).map(cb => cb.value);
+      const restrictions = document.getElementById('rsvp-restrictions').value;
+      
+      if(selected.length === 0) {
+        alert("Por favor, selecione pelo menos uma pessoa.");
+        return;
+      }
+
+      // Monta a mensagem que chegará no seu WhatsApp
+      let mensagem = "Olá! Gostaria de confirmar presença no casamento da Anne e do Pedro:\n\n";
+      mensagem += "*Confirmados:*\n- " + selected.join("\n- ") + "\n";
+      
+      if (restrictions.trim() !== "") {
+        mensagem += "\n*Restrições Alimentares:*\n" + restrictions;
+      }
+
+      // ATENÇÃO: Coloque o número do seu WhatsApp aqui.
+      // Formato: 55 + DDD + Número (apenas números, sem espaços)
+      const numeroWhatsApp = "5545999785165"; 
+      
+      // Cria o link que abre o WhatsApp
+      const linkWhatsApp = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensagem);
+
+      // Atualiza o ecrã para o convidado
+      document.getElementById('rsvp-selection-container').innerHTML = `
+        <div style="text-align: center; padding: 40px 0;">
+          <i data-lucide="message-circle" style="color: var(--secondary); width: 70px; height: 70px; margin-bottom: 20px;"></i>
+          <h3 style="margin-bottom: 15px; color: var(--primary); font-family: 'Cinzel', serif;">Quase lá...</h3>
+          <p>Será redirecionado(a) para o WhatsApp para enviar a confirmação para os noivos.</p>
+          <a href="${linkWhatsApp}" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 25px; display: inline-flex; align-items: center; gap: 10px;">
+             Enviar Confirmação
+          </a>
+        </div>
+      `;
+      lucide.createIcons();
+
+      // Tenta abrir o WhatsApp automaticamente num novo separador
+      window.open(linkWhatsApp, '_blank');
+    }
+  </script>
+</body>
+</html>
