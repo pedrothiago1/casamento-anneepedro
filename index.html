@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Casamento Anne e Pedro</title>
   
-  <!-- Ícone da aba do navegador (Favicon) -->
+  <!-- Ícone da aba do navegador (Favicon) atualizado para .jpg -->
   <link rel="icon" href="foto-fundo.jpg" type="image/jpeg">
   
   <!-- Fontes: Cinzel (Épica/Senhor dos Anéis) e Montserrat (Leitura limpa) -->
@@ -207,10 +207,24 @@
        AJUSTES PARA DISPOSITIVOS MÓVEIS (TELAS PEQUENAS)
        ========================================= */
     @media (max-width: 768px) {
-      /* Ajuste da Imagem de Fundo para o Celular */
+      /* Ajuste da Imagem de Fundo para o Celular - PARA NÃO CORTAR NINGUÉM */
       .hero {
-        background-attachment: scroll; /* Resolve o erro do "super zoom" no iOS */
-        background-position: center;   /* Centraliza a imagem na tela */
+        background-attachment: scroll; 
+        background-position: top center; /* Fixa a foto no topo */
+        background-size: 100% auto; /* Força a foto a caber 100% na largura sem cortar laterais */
+        background-repeat: no-repeat;
+        background-color: var(--bg-color); /* Preenche o resto da tela com a cor de fundo */
+        justify-content: flex-end; /* Joga os textos para a metade de baixo */
+        padding-bottom: 12vh;
+      }
+
+      /* Novo degradê para transição suave entre a foto e o fundo da tela */
+      .hero::before {
+        background: linear-gradient(to bottom, rgba(246, 244, 240, 0) 0%, rgba(246, 244, 240, 0.1) 25%, var(--bg-color) 45%);
+      }
+
+      .hero-content {
+        margin-top: 0; /* Remove a margem antiga para não atropelar a foto */
       }
 
       /* Menu e Topo */
@@ -351,7 +365,7 @@
     <div class="rsvp-box fade-up" id="rsvp-search-container">
       <p style="margin-bottom: 15px; font-weight: 500;">Digite seu nome ou sobrenome para buscar seu convite:</p>
       <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-        <input type="text" id="guest-search-input" placeholder="Ex: Anne ou Pedro">
+        <input type="text" id="guest-search-input" placeholder="Ex: Alencar ou Pedro">
         <button onclick="searchGuest()" class="btn">Buscar</button>
       </div>
       <div id="guest-search-results"></div>
@@ -399,9 +413,9 @@
 
   <div class="epic-quote-section fade-up">
     <div class="epic-quote">
-       
+      "Eu prefiro compartilhar uma vida com você a encarar todas as eras deste mundo sozinho(a)."
     </div>
-    <div class="epic-author"> </div>
+    <div class="epic-author">O Senhor dos Anéis</div>
   </div>
 
   <script>
