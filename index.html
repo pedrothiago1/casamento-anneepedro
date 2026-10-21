@@ -64,7 +64,7 @@
     nav a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; text-shadow: 1px 1px 5px rgba(255,255,255,0.8); }
     nav a:hover { color: var(--secondary); }
 
-    /* Hero Section Atualizada para a Aquarela */
+    /* Hero Section Atualizada para a Aquarela em JPG */
     .hero { 
       position: relative;
       height: 100vh;
@@ -74,7 +74,7 @@
       justify-content: center;
       text-align: center;
       padding: 0 20px;
-      background-image: url('foto-fundo.jpg'); 
+      background-image: url('foto-fundo.jpg'); /* ATUALIZADO PARA JPG */
       background-size: cover;
       background-position: center top; 
       background-attachment: fixed; 
@@ -207,10 +207,10 @@
        AJUSTES PARA DISPOSITIVOS MÓVEIS (TELAS PEQUENAS)
        ========================================= */
     @media (max-width: 768px) {
-      /* Ajuste da Imagem de Fundo para o Telemóvel */
+      /* Ajuste da Imagem de Fundo para o Celular */
       .hero {
         background-attachment: scroll; /* Resolve o erro do "super zoom" no iOS */
-        background-position: center;   /* Centraliza a imagem no ecrã */
+        background-position: center;   /* Centraliza a imagem na tela */
       }
 
       /* Menu e Topo */
@@ -383,25 +383,25 @@
     </div>
   </section>
 
-  <!-- SEÇÃO DE PRESENTES ATUALIZADA (LINK DA HAVAN) -->
+  <!-- SEÇÃO DE PRESENTES (LINK DA HAVAN) -->
   <section id="presentes">
     <h2 class="fade-up">Lista de Presentes</h2>
     <div class="lotr-divider fade-up"><i data-lucide="gift"></i></div>
     <p class="subtitle fade-up" style="margin-bottom: 20px;">Como já moramos juntos, já temos o básico montado! Se desejarem nos presentear, criamos uma lista com algumas ideias e itens para nossa casa diretamente na Havan.</p>
-    <p class="subtitle fade-up" style="font-size: 0.9rem; font-style: italic; margin-bottom: 40px;">*Fique à vontade para aceder ao link abaixo e escolher o item da sua preferência.</p>
+    <p class="subtitle fade-up" style="font-size: 0.9rem; font-style: italic; margin-bottom: 40px;">*Fique à vontade para acessar o link abaixo e escolher o item de sua preferência.</p>
     
     <div class="fade-up" style="margin-top: 20px;">
       <a href="https://lista.havan.com.br/Convidado/ItensListaPresente/967376" target="_blank" rel="noopener noreferrer" class="btn" style="display: inline-flex; align-items: center; gap: 10px; font-size: 1.05rem; padding: 18px 36px; text-decoration: none;">
-        <i data-lucide="external-link" style="width: 22px; height: 22px;"></i> Aceder à Lista na Havan
+        <i data-lucide="external-link" style="width: 22px; height: 22px;"></i> Acessar Lista na Havan
       </a>
     </div>
   </section>
 
   <div class="epic-quote-section fade-up">
     <div class="epic-quote">
-    
+       
     </div>
-    <div class="epic-author"></div>
+    <div class="epic-author"> </div>
   </div>
 
   <script>
@@ -460,8 +460,8 @@
       { id: 12, name: "Amigos - Alessandra e William", members: ["Alessandra Ditz", "William Hans"] },
       { id: 13, name: "Amigos - Jhennifer e Gilberto", members: ["Jhennifer Nogueira", "Gilberto Bruning"] },
       { id: 14, name: "Amigos - Janine e Sormani", members: ["Janine", "Sormani"] },
-      { id: 15, name: "Amigos - Andressa, Andrey e Alan", members: ["Andressa", "Andrey", "Alan"] }
-    { id: 15, name: "Família da Noiva - Vergara", members: ["Nestor Vergara", "Maria Cristina"] }
+      { id: 15, name: "Amigos - Andressa, Andrey e Alan", members: ["Andressa", "Andrey", "Alan"] },
+      { id: 16, name: "Família da Noiva Vergara", members: ["Nestor Vergara", "Maria Cristina"] }
     ];
 
     function searchGuest() {
@@ -525,18 +525,11 @@
       }
 
       // Monta a mensagem que chegará no seu WhatsApp
-      let mensagem = "Olá! Gostaria de confirmar presença no casamento da Anne e do Pedro:
-
-";
-      mensagem += "*Confirmados:*
-- " + selected.join("
-- ") + "
-";
+      let mensagem = "Olá! Gostaria de confirmar presença no casamento da Anne e do Pedro:\n\n";
+      mensagem += "*Confirmados:*\n- " + selected.join("\n- ") + "\n";
       
       if (restrictions.trim() !== "") {
-        mensagem += "
-*Restrições Alimentares:*
-" + restrictions;
+        mensagem += "\n*Restrições Alimentares:*\n" + restrictions;
       }
 
       // ATENÇÃO: Coloque o número do seu WhatsApp aqui.
@@ -551,7 +544,7 @@
         <div style="text-align: center; padding: 40px 0;">
           <i data-lucide="message-circle" style="color: var(--secondary); width: 70px; height: 70px; margin-bottom: 20px;"></i>
           <h3 style="margin-bottom: 15px; color: var(--primary); font-family: 'Cinzel', serif;">Quase lá...</h3>
-          <p>Será redirecionado(a) para o WhatsApp para enviar a confirmação para os noivos.</p>
+          <p>Você será redirecionado(a) para o WhatsApp para enviar a confirmação para os noivos.</p>
           <a href="${linkWhatsApp}" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 25px; display: inline-flex; align-items: center; gap: 10px;">
              Enviar Confirmação
           </a>
