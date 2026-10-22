@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Casamento Anne e Pedro</title>
   
-  <!-- Ícone da aba do navegador (Favicon) atualizado para .jpeg -->
+  <!-- Ícone da aba do navegador (Favicon) -->
   <link rel="icon" href="foto-fundo.jpeg" type="image/jpeg">
   
   <!-- Fontes: Cinzel (Épica/Senhor dos Anéis) e Montserrat (Leitura limpa) -->
@@ -50,29 +50,30 @@
       content: ""; width: 80px; height: 1px; background: var(--secondary); opacity: 0.5;
     }
 
-    /* Header & Nav */
+    /* Header & Nav (Desktop First Alignment) */
     header { 
-      text-align: center; padding: 20px; position: fixed; width: 100%; top: 0; z-index: 1000; 
-      display: flex; flex-direction: column; align-items: center;
+      padding: 30px 10%; position: fixed; width: 100%; top: 0; z-index: 1000; 
+      display: flex; flex-direction: column; align-items: flex-start; /* Alinhado à esquerda no PC */
       background: transparent; transition: all 0.4s ease;
     }
-    header.scrolled { background: rgba(246, 244, 240, 0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 15px 20px; border-bottom: 1px solid rgba(201, 162, 94, 0.3); }
+    header.scrolled { background: rgba(246, 244, 240, 0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 15px 10%; border-bottom: 1px solid rgba(201, 162, 94, 0.3); }
     header.scrolled h1, header.scrolled nav a { color: var(--primary); font-weight: 600; }
     
-    header h1 { font-size: 1.8rem; letter-spacing: 3px; color: var(--primary); text-shadow: 1px 1px 5px rgba(255,255,255,0.8); transition: 0.4s; }
+    header h1 { font-size: 2rem; letter-spacing: 3px; color: var(--primary); transition: 0.4s; }
     nav { margin-top: 10px; display: flex; gap: 20px; align-items: center;}
-    nav a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; text-shadow: 1px 1px 5px rgba(255,255,255,0.8); }
+    nav a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
     nav a:hover { color: var(--secondary); }
 
     /* =========================================
-       HERO SECTION (Mobile-First + Desktop Split)
+       HERO SECTION (Desktop Padrão - Revista)
        ========================================= */
     .hero {
       position: relative;
       height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      justify-content: center;
+      align-items: flex-start; /* Texto na esquerda */
       background-color: var(--bg-color);
       overflow: hidden;
     }
@@ -80,34 +81,33 @@
     .hero-bg {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url('foto-fundo.jpeg'); /* Extensão correta JPEG */
-      background-size: cover;
-      background-position: center bottom; /* Mantém os rostos ancorados embaixo */
+      background-image: url('foto-fundo.jpeg');
+      background-size: contain; /* Não corta a foto NUNCA no PC */
+      background-position: right bottom; /* Fixa no canto direito */
+      background-repeat: no-repeat;
       z-index: 1;
     }
 
-    /* Degradê superior no mobile para o texto ficar nítido */
+    /* Degradê suave da cor de fundo (esquerda) para a foto (direita) */
     .hero-bg::after {
       content: '';
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(to bottom, var(--bg-color) -10%, rgba(246, 244, 240, 0.7) 25%, transparent 55%);
+      background: linear-gradient(to right, var(--bg-color) 40%, rgba(246, 244, 240, 0.6) 65%, transparent 100%);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      margin-top: 18vh; /* Posiciona o texto na parte de cima da foto */
-      width: 100%;
-      padding: 0 20px;
-      text-align: center;
+      width: 50%; /* Ocupa só a metade esquerda */
+      padding-left: 10%;
+      text-align: left;
     }
     
     .hero h2 { 
       color: var(--primary); 
-      font-size: 4rem; 
+      font-size: 4.5rem; 
       margin-bottom: 5px; 
-      text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9), -1px -1px 5px rgba(255,255,255,0.8); 
       letter-spacing: 4px; 
     }
     .hero p { 
@@ -116,58 +116,13 @@
       letter-spacing: 2px; 
       color: var(--primary); 
       font-weight: 700;
-      text-shadow: 1px 1px 8px rgba(255, 255, 255, 0.9);
       margin-bottom: 40px;
     }
     
-    /* Contador Épico */
-    .countdown { display: flex; justify-content: center; gap: 25px; }
+    .countdown { display: flex; justify-content: flex-start; gap: 25px; }
     .time-box { text-align: center; min-width: 70px; }
-    
-    .time-box span { 
-      display: block; 
-      font-size: 2.5rem; 
-      font-family: 'Cinzel', serif; 
-      color: var(--primary); 
-      text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9); 
-      font-weight: 700;
-    }
-    .time-box small { 
-      font-size: 0.7rem; 
-      text-transform: uppercase; 
-      letter-spacing: 2px; 
-      color: var(--primary); 
-      font-weight: 700;
-      background: rgba(246, 244, 240, 0.8); 
-      padding: 3px 8px;
-      border-radius: 4px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
-    /* ESTRUTURA PARA DESKTOP (Tela deitada) */
-    @media (min-width: 769px) {
-      .hero {
-        flex-direction: row-reverse; /* Foto direita, Texto esquerda */
-      }
-      .hero-bg {
-        position: relative;
-        width: 50%;
-        height: 100vh;
-      }
-      /* Degradê lateral para fundir a foto com o fundo da página */
-      .hero-bg::after {
-        background: linear-gradient(to right, var(--bg-color) 0%, transparent 15%);
-      }
-      .hero-content {
-        width: 50%;
-        margin-top: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-    }
+    .time-box span { display: block; font-size: 2.5rem; font-family: 'Cinzel', serif; color: var(--primary); font-weight: 700; }
+    .time-box small { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); font-weight: 700; background: rgba(246, 244, 240, 0.8); padding: 3px 8px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
 
     /* Seções Gerais */
     section { padding: 90px 20px; max-width: 1100px; margin: 0 auto; text-align: center; }
@@ -214,7 +169,6 @@
     .btn { background: var(--primary); color: var(--secondary); border: 1px solid var(--secondary); padding: 14px 28px; font-size: 0.9rem; border-radius: 2px; cursor: pointer; transition: 0.3s; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-family: 'Montserrat', sans-serif;}
     .btn:hover { background: var(--secondary); color: white; border-color: var(--secondary); }
 
-    /* Estilo do botão voltar */
     .btn-back {
       background: transparent;
       color: var(--primary);
@@ -231,42 +185,54 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    .btn-back:hover {
-      color: var(--secondary);
-    }
+    .btn-back:hover { color: var(--secondary); }
 
-    /* Citações Épicas */
-    .epic-quote-section {
-      text-align: center; padding: 60px 20px; background: var(--primary); color: var(--secondary);
-    }
+    .epic-quote-section { text-align: center; padding: 60px 20px; background: var(--primary); color: var(--secondary); }
     .epic-quote { font-family: 'Cinzel', serif; font-style: italic; font-size: 1.4rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
     .epic-author { font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 15px; opacity: 0.8; font-family: 'Montserrat', sans-serif; }
 
     /* =========================================
-       AJUSTES GERAIS PARA CELULAR
+       AJUSTES GERAIS PARA CELULAR (Mantido Intacto)
        ========================================= */
     @media (max-width: 768px) {
-      /* Menu e Topo */
-      header h1 { font-size: 1.4rem; letter-spacing: 2px; }
-      nav { gap: 12px; }
-      nav a { font-size: 0.75rem; }
+      header { padding: 20px; align-items: center; }
+      header.scrolled { padding: 15px 20px; }
+      header h1 { font-size: 1.4rem; text-shadow: 1px 1px 5px rgba(255,255,255,0.8); }
+      nav { justify-content: center; gap: 12px; }
+      nav a { font-size: 0.75rem; text-shadow: 1px 1px 5px rgba(255,255,255,0.8); }
 
-      /* Imagem principal e Textos */
-      .hero h2 { font-size: 2.5rem; letter-spacing: 2px; }
-      .hero p { font-size: 1rem; margin-bottom: 30px; }
-
-      /* Ajuste do Relógio/Contador */
-      .countdown { gap: 10px; }
+      .hero {
+        align-items: center;
+        justify-content: flex-end;
+        padding-bottom: 12vh;
+      }
+      .hero-bg {
+        background-size: 100% auto; /* Força a foto a preencher a largura no celular */
+        background-position: top center;
+      }
+      /* Degradê no celular é de cima para baixo */
+      .hero-bg::after {
+        background: linear-gradient(to bottom, rgba(246, 244, 240, 0) 0%, rgba(246, 244, 240, 0.2) 30%, var(--bg-color) 45%);
+      }
+      .hero-content {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+      }
+      
+      /* Devolve a sombra no celular para leitura perfeita em cima da foto */
+      .hero h2 { font-size: 2.5rem; text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9), -1px -1px 5px rgba(255,255,255,0.8); }
+      .hero p { font-size: 1rem; margin-bottom: 30px; text-shadow: 1px 1px 8px rgba(255, 255, 255, 0.9); }
+      .countdown { justify-content: center; gap: 10px; }
       .time-box { min-width: 60px; }
-      .time-box span { font-size: 1.8rem; }
+      .time-box span { font-size: 1.8rem; text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9); }
       .time-box small { font-size: 0.6rem; padding: 2px 4px; }
-
-      /* Espaçamento geral das seções */
+      
       section { padding: 60px 15px; }
       section h2 { font-size: 2.2rem; }
       section p.subtitle { font-size: 0.95rem; margin-bottom: 35px; }
 
-      /* Caixas (Bem-vindos, Locais, RSVP) */
       .welcome-box { padding: 30px 20px; margin-top: -40px; margin-bottom: 20px; }
       .welcome-box p { font-size: 1rem; }
       
@@ -282,10 +248,7 @@
       .rsvp-box { padding: 30px 20px; }
       .checkbox-group { padding: 15px; }
       
-      /* Citação Final */
       .epic-quote { font-size: 1.1rem; }
-      
-      /* Botão Havan */
       #presentes .btn { font-size: 0.9rem; padding: 15px 20px; width: 100%; justify-content: center; }
     }
   </style>
