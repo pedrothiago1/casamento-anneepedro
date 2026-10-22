@@ -114,7 +114,7 @@
     /* Novo estilo para o horário */
     .hero-time {
       font-family: 'Cinzel', serif;
-      color: var(--secondary);
+      color: var(--primary); /* Mantendo o padrão Verde Escuro */
       font-size: 1.3rem;
       font-weight: 700;
       letter-spacing: 2px;
@@ -290,10 +290,9 @@
       <div class="location-card fade-up">
         <div style="display:flex; justify-content:center;"><i data-lucide="church" style="color: var(--secondary); margin-bottom: 15px; width: 35px; height: 35px;"></i></div>
         <h3>O Momento do 'Sim'</h3>
-        <p style="margin-bottom: 15px; font-size: 0.95rem; opacity: 0.9;">O momento mais importante e emocionante do nosso dia. Mal podemos esperar para receber as bênçãos cercados de quem amamos.</p>
+        <p style="margin-bottom: 15px; font-size: 0.95rem; opacity: 0.9;">O momento mais importante e emocionante do nosso dia. Mal podemos esperar para receber as bênçãos cercados de quem amamos. <strong>A cerimônia terá início às 17h00.</strong></p>
         <p style="font-weight: 500; font-size: 1.1rem; color: var(--primary);">Capela do Santíssimo Nossa Senhora de Guadalupe</p>
-        <p style="font-weight: 700; font-size: 1.1rem; color: var(--secondary); margin-top: 5px;">Horário: 17h00</p>
-        <p style="font-size: 0.9rem; margin-top: 5px;">Itaipu A, Foz do Iguaçu - PR<br>CEP: 85860-290</p>
+        <p style="font-size: 0.9rem; margin-top: 10px;">Itaipu A, Foz do Iguaçu - PR<br>CEP: 85860-290</p>
         <div>
           <a href="https://maps.google.com/?q=Capela+do+Santíssimo+Nossa+Senhora+de+Guadalupe,+Itaipu+A,+Foz+do+Iguaçu" target="_blank" rel="noopener noreferrer" class="btn-maps">Abrir no Maps</a>
         </div>
@@ -307,8 +306,7 @@
         <h3>A Recepção</h3>
         <p style="margin-bottom: 15px; font-size: 0.95rem; opacity: 0.9;">Pizza, Chopp de Vinho e Muito Amor! Depois do tão esperado 'sim', esperamos vocês para brindarmos a essa nova fase com uma mesa farta.</p>
         <p style="font-weight: 500; font-size: 1.1rem; color: var(--primary);">Cantina La Gregoria</p>
-        <p style="font-weight: 700; font-size: 1.1rem; color: var(--secondary); margin-top: 5px;">Horário: Após a cerimônia</p>
-        <p style="font-size: 0.9rem; margin-top: 5px;">Rua Almirante Barroso, N. 1466 - Sala 04.<br>Foz do Iguaçu - PR</p>
+        <p style="font-size: 0.9rem; margin-top: 10px;">Rua Almirante Barroso, N. 1466 - Sala 04.<br>Foz do Iguaçu - PR</p>
         <div>
           <a href="https://maps.app.goo.gl/nhxj391koJ4fPQrP8" target="_blank" rel="noopener noreferrer" class="btn-maps">Abrir no Maps</a>
         </div>
@@ -512,7 +510,7 @@
       }
 
       // ATENÇÃO: Coloque o número do seu WhatsApp aqui.
-      const numeroWhatsApp = "5545900000000"; 
+      const numeroWhatsApp = "5545999785165"; 
       const linkWhatsApp = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensagem);
 
       document.getElementById('rsvp-selection-container').innerHTML = `
