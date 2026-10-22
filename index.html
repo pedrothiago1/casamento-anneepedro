@@ -8,7 +8,7 @@
   <!-- Ícone da aba do navegador (Favicon) -->
   <link rel="icon" href="foto-fundo.jpeg" type="image/jpeg">
   
-  <!-- Fontes: Cinzel (Épica/Senhor dos Anéis) e Montserrat (Leitura limpa) -->
+  <!-- Fontes: Cinzel (Épica) e Montserrat (Leitura limpa) -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <!-- Biblioteca de Ícones Lucide -->
@@ -16,10 +16,10 @@
   
   <style>
     :root {
-      /* Paleta Senhor dos Anéis: Floresta Élfica, Pergaminho e Dourado */
+      /* Paleta: Floresta, Pergaminho e Dourado */
       --primary: #1e3122; /* Verde Floresta Escuro */
       --primary-light: #2c4a33; /* Verde Folha */
-      --secondary: #c9a25e; /* Dourado Envelhecido / O Anel */
+      --secondary: #c9a25e; /* Dourado Envelhecido */
       --bg-color: #f6f4f0; /* Pergaminho claro */
       --text-color: #3b3a37; /* Cinza Chumbo/Marrom Escuro */
       --card-bg: #ffffff;
@@ -42,7 +42,7 @@
       transform: translateY(0);
     }
 
-    /* Divisores Élficos (Senhor dos Anéis) */
+    /* Divisores */
     .lotr-divider {
       display: flex; align-items: center; justify-content: center; gap: 15px; color: var(--secondary); margin: 30px 0;
     }
@@ -50,30 +50,29 @@
       content: ""; width: 80px; height: 1px; background: var(--secondary); opacity: 0.5;
     }
 
-    /* Header & Nav (Desktop First Alignment) */
+    /* =========================================
+       ESTILOS PADRÃO (MOBILE-FIRST - INTOCADO)
+       ========================================= */
     header { 
-      padding: 30px 10%; position: fixed; width: 100%; top: 0; z-index: 1000; 
-      display: flex; flex-direction: column; align-items: flex-start; /* Alinhado à esquerda no PC */
+      text-align: center; padding: 20px; position: fixed; width: 100%; top: 0; z-index: 1000; 
+      display: flex; flex-direction: column; align-items: center;
       background: transparent; transition: all 0.4s ease;
     }
-    header.scrolled { background: rgba(246, 244, 240, 0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 15px 10%; border-bottom: 1px solid rgba(201, 162, 94, 0.3); }
+    header.scrolled { background: rgba(246, 244, 240, 0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 15px 20px; border-bottom: 1px solid rgba(201, 162, 94, 0.3); }
     header.scrolled h1, header.scrolled nav a { color: var(--primary); font-weight: 600; }
     
-    header h1 { font-size: 2rem; letter-spacing: 3px; color: var(--primary); transition: 0.4s; }
-    nav { margin-top: 10px; display: flex; gap: 20px; align-items: center;}
-    nav a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+    header h1 { font-size: 1.4rem; letter-spacing: 2px; color: var(--primary); text-shadow: 1px 1px 5px rgba(255,255,255,0.8); transition: 0.4s; }
+    nav { margin-top: 10px; display: flex; gap: 12px; align-items: center;}
+    nav a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; text-shadow: 1px 1px 5px rgba(255,255,255,0.8); }
     nav a:hover { color: var(--secondary); }
 
-    /* =========================================
-       HERO SECTION (Desktop Padrão - Revista)
-       ========================================= */
     .hero {
       position: relative;
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: flex-start; /* Texto na esquerda */
+      align-items: center;
+      justify-content: flex-start;
       background-color: var(--bg-color);
       overflow: hidden;
     }
@@ -82,174 +81,151 @@
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background-image: url('foto-fundo.jpeg');
-      background-size: contain; /* Não corta a foto NUNCA no PC */
-      background-position: right bottom; /* Fixa no canto direito */
-      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center bottom;
       z-index: 1;
     }
 
-    /* Degradê suave da cor de fundo (esquerda) para a foto (direita) */
+    /* Degradê superior no mobile */
     .hero-bg::after {
       content: '';
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(to right, var(--bg-color) 40%, rgba(246, 244, 240, 0.6) 65%, transparent 100%);
+      background: linear-gradient(to bottom, var(--bg-color) -10%, rgba(246, 244, 240, 0.7) 25%, transparent 55%);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      width: 50%; /* Ocupa só a metade esquerda */
-      padding-left: 10%;
-      text-align: left;
+      margin-top: 18vh; 
+      width: 100%;
+      padding: 0 20px;
+      text-align: center;
     }
     
     .hero h2 { 
       color: var(--primary); 
-      font-size: 4.5rem; 
+      font-size: 2.5rem; 
       margin-bottom: 5px; 
-      letter-spacing: 4px; 
+      text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9), -1px -1px 5px rgba(255,255,255,0.8); 
+      letter-spacing: 2px; 
     }
     .hero p { 
-      font-size: 1.2rem; 
+      font-size: 1rem; 
       font-family: 'Cinzel', serif; 
       letter-spacing: 2px; 
       color: var(--primary); 
       font-weight: 700;
-      margin-bottom: 40px;
+      text-shadow: 1px 1px 8px rgba(255, 255, 255, 0.9);
+      margin-bottom: 30px;
     }
     
-    .countdown { display: flex; justify-content: flex-start; gap: 25px; }
-    .time-box { text-align: center; min-width: 70px; }
-    .time-box span { display: block; font-size: 2.5rem; font-family: 'Cinzel', serif; color: var(--primary); font-weight: 700; }
-    .time-box small { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); font-weight: 700; background: rgba(246, 244, 240, 0.8); padding: 3px 8px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    .countdown { display: flex; justify-content: center; gap: 10px; }
+    .time-box { text-align: center; min-width: 60px; }
+    .time-box span { display: block; font-size: 1.8rem; font-family: 'Cinzel', serif; color: var(--primary); text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9); font-weight: 700; }
+    .time-box small { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); font-weight: 700; background: rgba(246, 244, 240, 0.8); padding: 2px 4px; border-radius: 4px; }
 
     /* Seções Gerais */
-    section { padding: 90px 20px; max-width: 1100px; margin: 0 auto; text-align: center; }
-    section h2 { font-size: 2.8rem; margin-bottom: 25px; color: var(--primary); }
-    section p.subtitle { color: var(--text-color); margin-bottom: 50px; max-width: 700px; margin-left: auto; margin-right: auto; font-size: 1.05rem; }
+    section { padding: 60px 15px; max-width: 1100px; margin: 0 auto; text-align: center; }
+    section h2 { font-size: 2.2rem; margin-bottom: 25px; color: var(--primary); }
+    section p.subtitle { color: var(--text-color); margin-bottom: 35px; max-width: 700px; margin-left: auto; margin-right: auto; font-size: 0.95rem; }
 
-    /* Bloco Bem-Vindos */
     .welcome-box {
-      background: var(--card-bg);
-      padding: 60px 40px;
-      border-radius: 4px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-      border: 1px solid rgba(201, 162, 94, 0.3);
-      margin: -60px auto 40px auto;
-      position: relative;
-      z-index: 10;
-      max-width: 800px;
+      background: var(--card-bg); padding: 30px 20px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      border: 1px solid rgba(201, 162, 94, 0.3); margin: -40px auto 20px auto; position: relative; z-index: 10; max-width: 800px;
     }
-    .welcome-box p { margin-bottom: 20px; font-size: 1.1rem; line-height: 1.8; }
+    .welcome-box p { margin-bottom: 20px; font-size: 1rem; line-height: 1.8; }
 
-    /* Logística & Dress Code */
-    .logistics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; align-items: stretch; margin-bottom: 40px; }
-    
-    .location-card { background: var(--card-bg); padding: 40px; border-radius: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid rgba(201, 162, 94, 0.2); display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
-    .location-card h3 { font-size: 1.8rem; margin-bottom: 15px; color: var(--primary-light); }
+    .logistics-grid { display: grid; grid-template-columns: 1fr; gap: 20px; text-align: left; align-items: stretch; margin-bottom: 40px; }
+    .location-card { background: var(--card-bg); padding: 30px 20px; border-radius: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid rgba(201, 162, 94, 0.2); display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
+    .location-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--primary-light); }
     .btn-maps { display: inline-block; background: transparent; color: var(--primary); border: 1px solid var(--primary); padding: 10px 20px; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; border-radius: 2px; transition: 0.3s; margin-top: 20px; font-weight: 600; }
     .btn-maps:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
-    .dress-code-box { background: var(--primary-light); color: white; padding: 50px 30px; border-radius: 4px; text-align: center; border: 1px solid rgba(201, 162, 94, 0.4); }
-    .dress-code-box h3 { color: var(--secondary); margin-bottom: 20px; font-size: 2.2rem; }
-    .dress-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-    .dress-col h4 { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--secondary); margin-bottom: 15px; }
+    .dress-code-box { background: var(--primary-light); color: white; padding: 35px 20px; border-radius: 4px; text-align: center; border: 1px solid rgba(201, 162, 94, 0.4); }
+    .dress-code-box h3 { color: var(--secondary); margin-bottom: 20px; font-size: 1.8rem; }
+    .dress-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
+    .dress-col h4 { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--secondary); margin-bottom: 15px; }
     .dress-col p { font-size: 0.95rem; opacity: 0.9; }
 
-    /* RSVP Section */
-    .rsvp-box { background: var(--card-bg); padding: 50px; border-radius: 4px; max-width: 650px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.04); border: 1px solid rgba(201, 162, 94, 0.3); }
+    .rsvp-box { background: var(--card-bg); padding: 30px 20px; border-radius: 4px; max-width: 650px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.04); border: 1px solid rgba(201, 162, 94, 0.3); }
     .rsvp-box input[type="text"], .rsvp-box textarea { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 2px; font-size: 1rem; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; background: var(--bg-color); }
     .search-result-item { padding: 15px; border: 1px solid rgba(201, 162, 94, 0.4); border-radius: 2px; margin-top: 10px; cursor: pointer; transition: 0.3s; text-align: left; background: var(--card-bg); }
     .search-result-item:hover { border-color: var(--primary); background: #fdfdfd; }
-    .checkbox-group { text-align: left; margin: 20px 0; background: var(--bg-color); padding: 25px; border-radius: 2px; border: 1px solid #eaeaea; }
+    .checkbox-group { text-align: left; margin: 20px 0; background: var(--bg-color); padding: 15px; border-radius: 2px; border: 1px solid #eaeaea; }
     .checkbox-group label { display: flex; align-items: center; margin-bottom: 15px; cursor: pointer; font-size: 1rem; color: var(--text-color); }
     .checkbox-group input[type="checkbox"] { margin-right: 15px; transform: scale(1.2); accent-color: var(--primary); }
 
     .btn { background: var(--primary); color: var(--secondary); border: 1px solid var(--secondary); padding: 14px 28px; font-size: 0.9rem; border-radius: 2px; cursor: pointer; transition: 0.3s; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-family: 'Montserrat', sans-serif;}
     .btn:hover { background: var(--secondary); color: white; border-color: var(--secondary); }
+    #presentes .btn { width: 100%; justify-content: center; }
 
-    .btn-back {
-      background: transparent;
-      color: var(--primary);
-      border: none;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 20px;
-      transition: 0.3s;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+    .btn-back { background: transparent; color: var(--primary); border: none; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
     .btn-back:hover { color: var(--secondary); }
 
-    .epic-quote-section { text-align: center; padding: 60px 20px; background: var(--primary); color: var(--secondary); }
-    .epic-quote { font-family: 'Cinzel', serif; font-style: italic; font-size: 1.4rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
-    .epic-author { font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 15px; opacity: 0.8; font-family: 'Montserrat', sans-serif; }
-
     /* =========================================
-       AJUSTES GERAIS PARA CELULAR (Mantido Intacto)
+       AJUSTES PARA DESKTOP (TELA DIVIDIDA 50/50)
        ========================================= */
-    @media (max-width: 768px) {
-      header { padding: 20px; align-items: center; }
-      header.scrolled { padding: 15px 20px; }
-      header h1 { font-size: 1.4rem; text-shadow: 1px 1px 5px rgba(255,255,255,0.8); }
-      nav { justify-content: center; gap: 12px; }
-      nav a { font-size: 0.75rem; text-shadow: 1px 1px 5px rgba(255,255,255,0.8); }
+    @media (min-width: 769px) {
+      header { 
+        flex-direction: row; justify-content: space-between; padding: 30px 5%;
+      }
+      header.scrolled { padding: 15px 5%; }
+      header h1 { font-size: 1.8rem; text-shadow: none; letter-spacing: 3px; }
+      nav { margin-top: 0; gap: 30px; }
+      nav a { font-size: 0.85rem; text-shadow: none; }
 
       .hero {
-        align-items: center;
-        justify-content: flex-end;
-        padding-bottom: 12vh;
-      }
-      .hero-bg {
-        background-size: 100% auto; /* Força a foto a preencher a largura no celular */
-        background-position: top center;
-      }
-      /* Degradê no celular é de cima para baixo */
-      .hero-bg::after {
-        background: linear-gradient(to bottom, rgba(246, 244, 240, 0) 0%, rgba(246, 244, 240, 0.2) 30%, var(--bg-color) 45%);
+        flex-direction: row; /* Coloca lado a lado */
+        align-items: stretch;
       }
       .hero-content {
-        width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
-        text-align: center;
+        width: 50%;
+        height: 100vh;
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        order: 1; /* Garante que fique na esquerda */
+        background-color: var(--bg-color); /* Fundo sólido para leitura perfeita */
       }
-      
-      /* Devolve a sombra no celular para leitura perfeita em cima da foto */
-      .hero h2 { font-size: 2.5rem; text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9), -1px -1px 5px rgba(255,255,255,0.8); }
-      .hero p { font-size: 1rem; margin-bottom: 30px; text-shadow: 1px 1px 8px rgba(255, 255, 255, 0.9); }
-      .countdown { justify-content: center; gap: 10px; }
-      .time-box { min-width: 60px; }
-      .time-box span { font-size: 1.8rem; text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9); }
-      .time-box small { font-size: 0.6rem; padding: 2px 4px; }
-      
-      section { padding: 60px 15px; }
-      section h2 { font-size: 2.2rem; }
-      section p.subtitle { font-size: 0.95rem; margin-bottom: 35px; }
+      .hero-bg {
+        position: relative; /* Remove o absolute para ocupar o grid */
+        width: 50%;
+        height: 100vh;
+        order: 2; /* Garante que a foto fique na direita */
+        background-position: center 10%; /* Foca nos rostos (evita cortar a cabeça) */
+      }
+      .hero-bg::after {
+        /* Degradê bem suave apenas na divisória para misturar com o site */
+        background: linear-gradient(to right, var(--bg-color) 0%, rgba(246, 244, 240, 0.1) 8%, transparent 20%);
+      }
 
-      .welcome-box { padding: 30px 20px; margin-top: -40px; margin-bottom: 20px; }
-      .welcome-box p { font-size: 1rem; }
-      
-      .logistics-grid { grid-template-columns: 1fr; gap: 20px; }
-      .location-card { padding: 30px 20px; }
-      .location-card h3 { font-size: 1.5rem; }
+      /* Textos limpos no Desktop (Sem Sombras) */
+      .hero h2 { font-size: 4rem; letter-spacing: 4px; text-shadow: none; margin-bottom: 5px; }
+      .hero p { font-size: 1.2rem; text-shadow: none; margin-bottom: 40px; }
+      .countdown { gap: 25px; }
+      .time-box { min-width: 70px; }
+      .time-box span { font-size: 2.5rem; text-shadow: none; }
+      .time-box small { font-size: 0.7rem; padding: 3px 8px; border: 1px solid rgba(30, 49, 34, 0.2); background: transparent; }
 
-      .dress-grid { grid-template-columns: 1fr; gap: 25px; }
-      .dress-code-box { padding: 35px 20px; }
-      .dress-code-box h3 { font-size: 1.8rem; }
-      .dress-col h4 { font-size: 1.3rem; }
-
-      .rsvp-box { padding: 30px 20px; }
-      .checkbox-group { padding: 15px; }
-      
-      .epic-quote { font-size: 1.1rem; }
-      #presentes .btn { font-size: 0.9rem; padding: 15px 20px; width: 100%; justify-content: center; }
+      /* Espaçamentos Maiores para Desktop */
+      section { padding: 90px 20px; }
+      section h2 { font-size: 2.8rem; }
+      section p.subtitle { font-size: 1.05rem; margin-bottom: 50px; }
+      .welcome-box { padding: 60px 40px; margin-top: -60px; }
+      .welcome-box p { font-size: 1.1rem; }
+      .logistics-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .location-card { padding: 40px; }
+      .location-card h3 { font-size: 1.8rem; }
+      .dress-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .dress-code-box { padding: 50px 30px; }
+      .dress-code-box h3 { font-size: 2.2rem; }
+      .dress-col h4 { font-size: 1.5rem; }
+      .rsvp-box { padding: 50px; }
+      .checkbox-group { padding: 25px; }
+      #presentes .btn { width: auto; font-size: 1.05rem; padding: 18px 36px; }
     }
   </style>
 </head>
@@ -348,7 +324,7 @@
     <div class="rsvp-box fade-up" id="rsvp-search-container">
       <p style="margin-bottom: 15px; font-weight: 500;">Digite seu nome ou sobrenome para buscar seu convite:</p>
       <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-        <input type="text" id="guest-search-input" placeholder="Ex: Anne ou Pedro">
+        <input type="text" id="guest-search-input" placeholder="Ex: Alencar ou Pedro">
         <button onclick="searchGuest()" class="btn">Buscar</button>
       </div>
       <div id="guest-search-results"></div>
@@ -387,19 +363,12 @@
     <p class="subtitle fade-up" style="margin-bottom: 20px;">Como já moramos juntos, já temos o básico montado! Se desejarem nos presentear, criamos uma lista com algumas ideias e itens para nossa casa diretamente na Havan.</p>
     <p class="subtitle fade-up" style="font-size: 0.9rem; font-style: italic; margin-bottom: 40px;">*Fique à vontade para acessar o link abaixo e escolher o item de sua preferência.</p>
     
-    <div class="fade-up" style="margin-top: 20px;">
-      <a href="https://lista.havan.com.br/Convidado/ItensListaPresente/967376" target="_blank" rel="noopener noreferrer" class="btn" style="display: inline-flex; align-items: center; gap: 10px; font-size: 1.05rem; padding: 18px 36px; text-decoration: none;">
+    <div class="fade-up" style="margin-top: 20px; padding-bottom: 40px;">
+      <a href="https://lista.havan.com.br/Convidado/ItensListaPresente/967376" target="_blank" rel="noopener noreferrer" class="btn" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none;">
         <i data-lucide="external-link" style="width: 22px; height: 22px;"></i> Acessar Lista na Havan
       </a>
     </div>
   </section>
-
-  <div class="epic-quote-section fade-up">
-    <div class="epic-quote">
-      
-    </div>
-    <div class="epic-author"></div>
-  </div>
 
   <script>
     // --- LÓGICA DE ANIMAÇÃO NO SCROLL (Fade-Up) ---
@@ -503,14 +472,12 @@
       lucide.createIcons();
     }
 
-    // --- FUNÇÃO DO BOTÃO VOLTAR ---
     function goBackToSearch() {
       document.getElementById('rsvp-selection-container').style.display = 'none';
       document.getElementById('rsvp-search-container').style.display = 'block';
       document.getElementById('rsvp-restrictions').value = '';
     }
 
-    // --- FUNÇÃO DE CONFIRMAÇÃO VIA WHATSAPP ---
     function submitRSVP(event) {
       event.preventDefault();
       const selected = Array.from(document.querySelectorAll('input[name="guests"]:checked')).map(cb => cb.value);
@@ -521,7 +488,6 @@
         return;
       }
 
-      // Monta a mensagem que chegará no seu WhatsApp
       let mensagem = "Olá! Gostaria de confirmar presença no casamento da Anne e do Pedro:\n\n";
       mensagem += "*Confirmados:*\n- " + selected.join("\n- ") + "\n";
       
@@ -530,13 +496,9 @@
       }
 
       // ATENÇÃO: Coloque o número do seu WhatsApp aqui.
-      // Formato: 55 + DDD + Número (apenas números, sem espaços)
       const numeroWhatsApp = "5545900000000"; 
-      
-      // Cria o link que abre o WhatsApp
       const linkWhatsApp = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensagem);
 
-      // Atualiza o ecrã para o convidado
       document.getElementById('rsvp-selection-container').innerHTML = `
         <div style="text-align: center; padding: 40px 0;">
           <i data-lucide="message-circle" style="color: var(--secondary); width: 70px; height: 70px; margin-bottom: 20px;"></i>
@@ -548,8 +510,6 @@
         </div>
       `;
       lucide.createIcons();
-
-      // Tenta abrir o WhatsApp automaticamente num novo separador
       window.open(linkWhatsApp, '_blank');
     }
   </script>
