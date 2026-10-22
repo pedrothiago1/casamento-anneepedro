@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Casamento Anne e Pedro</title>
   
-  <!-- Ícone da aba do navegador (Favicon) atualizado para .jpg -->
+  <!-- Ícone da aba do navegador (Favicon) atualizado para .jpeg -->
   <link rel="icon" href="foto-fundo.jpeg" type="image/jpeg">
   
   <!-- Fontes: Cinzel (Épica/Senhor dos Anéis) e Montserrat (Leitura limpa) -->
@@ -64,30 +64,44 @@
     nav a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; text-shadow: 1px 1px 5px rgba(255,255,255,0.8); }
     nav a:hover { color: var(--secondary); }
 
-    /* Hero Section Atualizada para a Aquarela em JPG */
-    .hero { 
+    /* =========================================
+       HERO SECTION (Mobile-First + Desktop Split)
+       ========================================= */
+    .hero {
       position: relative;
       height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 20px;
-      background-image: url('foto-fundo.jpeg'); /* ATUALIZADO PARA JPG */
-      background-size: cover;
-      background-position: center top; 
-      background-attachment: fixed; 
+      background-color: var(--bg-color);
+      overflow: hidden;
     }
-    .hero::before {
+
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('foto-fundo.jpeg'); /* Extensão correta JPEG */
+      background-size: cover;
+      background-position: center bottom; /* Mantém os rostos ancorados embaixo */
+      z-index: 1;
+    }
+
+    /* Degradê superior no mobile para o texto ficar nítido */
+    .hero-bg::after {
       content: '';
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(to bottom, rgba(246, 244, 240, 0.6) 0%, rgba(246, 244, 240, 0.1) 50%, var(--bg-color) 100%);
-      z-index: 1;
+      background: linear-gradient(to bottom, var(--bg-color) -10%, rgba(246, 244, 240, 0.7) 25%, transparent 55%);
     }
-    
-    .hero-content { position: relative; z-index: 2; margin-top: -10vh; } 
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      margin-top: 18vh; /* Posiciona o texto na parte de cima da foto */
+      width: 100%;
+      padding: 0 20px;
+      text-align: center;
+    }
     
     .hero h2 { 
       color: var(--primary); 
@@ -128,6 +142,31 @@
       padding: 3px 8px;
       border-radius: 4px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    /* ESTRUTURA PARA DESKTOP (Tela deitada) */
+    @media (min-width: 769px) {
+      .hero {
+        flex-direction: row-reverse; /* Foto direita, Texto esquerda */
+      }
+      .hero-bg {
+        position: relative;
+        width: 50%;
+        height: 100vh;
+      }
+      /* Degradê lateral para fundir a foto com o fundo da página */
+      .hero-bg::after {
+        background: linear-gradient(to right, var(--bg-color) 0%, transparent 15%);
+      }
+      .hero-content {
+        width: 50%;
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
     }
 
     /* Seções Gerais */
@@ -204,29 +243,9 @@
     .epic-author { font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 15px; opacity: 0.8; font-family: 'Montserrat', sans-serif; }
 
     /* =========================================
-       AJUSTES PARA DISPOSITIVOS MÓVEIS (TELAS PEQUENAS)
+       AJUSTES GERAIS PARA CELULAR
        ========================================= */
     @media (max-width: 768px) {
-      /* Ajuste da Imagem de Fundo para o Celular - PARA NÃO CORTAR NINGUÉM */
-      .hero {
-        background-attachment: scroll; 
-        background-position: top center; /* Fixa a foto no topo */
-        background-size: 100% auto; /* Força a foto a caber 100% na largura sem cortar laterais */
-        background-repeat: no-repeat;
-        background-color: var(--bg-color); /* Preenche o resto da tela com a cor de fundo */
-        justify-content: flex-end; /* Joga os textos para a metade de baixo */
-        padding-bottom: 12vh;
-      }
-
-      /* Novo degradê para transição suave entre a foto e o fundo da tela */
-      .hero::before {
-        background: linear-gradient(to bottom, rgba(246, 244, 240, 0) 0%, rgba(246, 244, 240, 0.1) 25%, var(--bg-color) 45%);
-      }
-
-      .hero-content {
-        margin-top: 0; /* Remove a margem antiga para não atropelar a foto */
-      }
-
       /* Menu e Topo */
       header h1 { font-size: 1.4rem; letter-spacing: 2px; }
       nav { gap: 12px; }
@@ -284,6 +303,7 @@
   </header>
 
   <div class="hero">
+    <div class="hero-bg"></div>
     <div class="hero-content fade-up">
       <h2>14 de Novembro</h2>
       <p>"A jornada não termina aqui."</p>
@@ -365,7 +385,7 @@
     <div class="rsvp-box fade-up" id="rsvp-search-container">
       <p style="margin-bottom: 15px; font-weight: 500;">Digite seu nome ou sobrenome para buscar seu convite:</p>
       <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-        <input type="text" id="guest-search-input" placeholder="Ex: Alencar ou Pedro">
+        <input type="text" id="guest-search-input" placeholder="Ex: Anne ou Pedro">
         <button onclick="searchGuest()" class="btn">Buscar</button>
       </div>
       <div id="guest-search-results"></div>
@@ -413,9 +433,9 @@
 
   <div class="epic-quote-section fade-up">
     <div class="epic-quote">
-      "Eu prefiro compartilhar uma vida com você a encarar todas as eras deste mundo sozinho(a)."
+      
     </div>
-    <div class="epic-author">O Senhor dos Anéis</div>
+    <div class="epic-author"></div>
   </div>
 
   <script>
